@@ -9,8 +9,12 @@ def main():
     client.connect((HOST, PORT))
     
     while True:
-        # Exibir menu de opções
-        voto = input("Digite '1' para votar em Elon Musk, '2' para votar em Steve Jobs ou 'sair' para encerrar: ")
+        # Receber e exibir mensagem do servidor
+        mensagem = client.recv(1024).decode()
+        print(mensagem)
+
+        # Obter entrada do usuário
+        voto = input("Digite sua opção: ")
         
         # Enviar voto ao servidor
         client.send(voto.encode())
